@@ -34,8 +34,12 @@ public class Text extends BaseElement {
 
     @Override
     public char[][] paint(char[][] result) {
-        for (int i = x; i < text.length(); i++) {
-                result[y][i] = text.charAt(i);
+        short counter = 0;
+        for (int i = x; i < result[0].length; i++) {
+                result[y][i] = text.charAt(counter);
+                counter++;
+                if (counter == text.length())
+                    break;
         }
         return result;
     }

@@ -13,7 +13,18 @@ public class VerticalLayout extends BaseElement{
     public void move(int x, int y) {
         this.x += x;
         this.y += y;
-        elementList.get(0).move(x, y);
+        for (Element element : elementList) {
+            element.move(x, y);
+        }
+        for (int i = 0; i < elementList.size(); i++){
+            //elementList.get(i).move(x, y);
+            if (i + 1 >= elementList.size())
+                break;
+            for (int j = 0; j < i; j++){
+                elementList.get(i + 1).move(elementList.get(i).getHeight(), 0);
+            }
+        }
+        //elementList.get(0).move(x, y);
     }
 
     @Override
@@ -38,8 +49,9 @@ public class VerticalLayout extends BaseElement{
         int sumHeight = 0;
         for (int i = 0; i < elementList.size(); i++) {
             if (i != 0)
-                elementList.get(i).move(0, elementHeight);
+                elementList.get(i).move(x, elementHeight);
             elementHeight = elementList.get(i).getHeight();
+            elementList.get(i).setHeight(elementHeight);
             sumHeight += elementHeight;
         }
         return sumHeight; //Убираем лишнюю клетку
@@ -47,7 +59,11 @@ public class VerticalLayout extends BaseElement{
 
     @Override
     public char[][] paint(char[][] result) {
+        short counter = 0;
         for (Element element : elementList) {
+            counter++;
+            if (counter != 1)
+                element.move(0,0);
             result = element.paint(result);
         }
         return result;

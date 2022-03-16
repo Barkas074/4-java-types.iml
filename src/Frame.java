@@ -14,7 +14,7 @@ public class Frame extends BaseElement {
     public void move(int x, int y) {
         this.x += x;
         this.y += y;
-        element.move(x, y);
+        element.move(x + 1, y + 2);
     }
 
     public String getTitle() {

@@ -14,12 +14,17 @@ public class Rectangle extends BaseElement{
         this.width = width;
         element.setWidth(width);
     }
+    @Override
+    public void setHeight(int height){
+        this.height = height;
+        element.setHeight(height);
+    }
 
     @Override
     public void move(int x, int y) {
         this.x += x;
         this.y += y;
-        element.move(x, y);
+        element.move(x + 1, y + 2);
     }
 
     @Override
@@ -37,22 +42,27 @@ public class Rectangle extends BaseElement{
         for (int i = x; i < result.length; i++) {
             for (int j = y; j < result[i].length; j++) {
                 if (i == x && j == y)
-                    result[i][j] = '┌';
-                else if (i == x && j == result[i].length - 1)
+                     result[i][j] = '┌';
+                else if (i == x && j == width - 1) {
                     result[i][j] = '┐';
-                else if (i == result.length - 1 && j == y)
+                    break;
+                }
+                else if (i == height + x - 1 && j == y)
                     result[i][j] = '└';
-                else if (i == result.length - 1 && j == result[i].length - 1)
+                else if (i == height + x - 1 && j == width - 1) {
                     result[i][j] = '┘';
-                else if (i == x || i == result.length - 1)
+                    element.move(height + x - 1, 0);
+                    return element.paint(result);
+                }
+                else if (i == x && i <= x + width - 1 || i == height + x - 1 && i <= x + width - 1)
                     result[i][j] = '─';
-                else if (j == y || j == result[i].length - 1)
+                else if ((j == y || j == width - 1) && i >= x && i <= height + x - 1)
                     result[i][j] = '│';
-                else if (j == y + 1 || j == result[i].length - 2)
-                    result[i][j] = ' ';
+                //else if (j == y + 1 || j == width - 2)
+                //    result[i][j] = ' ';
             }
         }
-        element.move(1,2);
-        return element.paint(result);
+
+        return result;
     }
 }
