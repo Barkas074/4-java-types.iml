@@ -1,13 +1,20 @@
 import java.awt.*;
 
 public class Frame extends BaseElement {
-    private String title;
+    private final String title;
     public Element element;
 
     public Frame(String title, Element element) {
         super(0, 0, 0, 0, Color.GREEN);
         this.title = " " + title + " ";
         this.element = element;
+    }
+
+    @Override
+    public void move(int x, int y) {
+        this.x += x;
+        this.y += y;
+        element.move(x, y);
     }
 
     public String getTitle() {
@@ -46,6 +53,7 @@ public class Frame extends BaseElement {
                     result[i][j] = ' ';
             }
         }
+        element.move(1,2);
         return element.paint(result);
     }
 }

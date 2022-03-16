@@ -10,6 +10,13 @@ public class VerticalLayout extends BaseElement{
     }
 
     @Override
+    public void move(int x, int y) {
+        this.x += x;
+        this.y += y;
+        elementList.get(0).move(x, y);
+    }
+
+    @Override
     public int getWidth() {
         int minWidth = 0;
         int elementWidth;

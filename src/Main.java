@@ -23,6 +23,9 @@ public class Main {
         );
         frame.calculate();
         char[][] result = new char[frame.getHeight()][frame.getWidth()];
+        for (char[] chars : result) {
+            Arrays.fill(chars, ' ');
+        }
         frame.paint(result);
         for (char[] part : result) {
             for (char charResult : part) {

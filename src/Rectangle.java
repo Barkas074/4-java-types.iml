@@ -52,6 +52,7 @@ public class Rectangle extends BaseElement{
                     result[i][j] = ' ';
             }
         }
+        element.move(1,2);
         return element.paint(result);
     }
 }
