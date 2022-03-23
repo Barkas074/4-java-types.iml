@@ -1,19 +1,11 @@
 import java.awt.*;
 
 public class Text extends BaseElement {
-    private String text;
-    public int x;
-    public int y;
-    private int width;
-    private int height;
+    private final String text;
 
     public Text(String text) {
-        super(0, 0,0, 0, Color.GREEN);
+        super(1, 2, 0, 1);
         this.text = text;
-    }
-
-    public String getTitle() {
-        return text;
     }
 
     @Override
@@ -35,11 +27,11 @@ public class Text extends BaseElement {
     @Override
     public char[][] paint(char[][] result) {
         short counter = 0;
-        for (int i = x; i < result[0].length; i++) {
-                result[y][i] = text.charAt(counter);
-                counter++;
-                if (counter == text.length())
-                    break;
+        for (int i = y; i < result[x].length; i++) {
+            result[x][i] = text.charAt(counter);
+            counter++;
+            if (counter == text.length())
+                break;
         }
         return result;
     }

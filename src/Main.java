@@ -3,7 +3,7 @@ import java.awt.*;
 import java.util.Arrays;
 
 public class Main {
-    public static void main(String[] args){
+    public static void main(String[] args) {
         Frame frame = new Frame("Login",
                 new HorizontalLayout(Arrays.asList(
                         new VerticalLayout(Arrays.asList(
